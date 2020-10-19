@@ -18,6 +18,7 @@ namespace IDCodeReader
             {
                 Console.WriteLine("wrong format.");
             }
+            AgeCalc(idCode);
         }
         public static bool Validate(string idCode)
         {
@@ -50,6 +51,36 @@ namespace IDCodeReader
             {
                 Console.WriteLine("Hello, Madam!!");
             }
+
+        }
+        public static int GetYear(string idcode)
+        {
+            int firstnum = Int32.Parse(idcode.Substring(0,1));
+            string year = idcode.Substring(1, 2);
+            string YearofBirth;
+            int YoB = 0;
+            if(firstnum == 3 || firstnum == 4)
+            {
+               YearofBirth= "19" + year;
+                YoB = Int32.Parse(YearofBirth);
+            }
+            else if (firstnum == 5 || firstnum == 6)
+            {
+                YearofBirth = "20" + year;
+                YoB = Int32.Parse(YearofBirth);
+                
+            }
+            return YoB;
+
+        }
+        public static void AgeCalc(string idcode)
+        {
+            int year = GetYear(idcode);
+            DateTime now = DateTime.Now;
+            string currentYear = now.Year.ToString();
+            int yearNow = Int32.Parse(currentYear);
+            int age = yearNow - year;
+            Console.WriteLine($"You are {age} years old.");
 
         }
         
